@@ -54,7 +54,7 @@ public class PlanterDatabase: MonoBehaviour {
 
 	void ConstructSeedDatabase(){
 	for (int i = 0; i < seedData.Count; i++) {
-			seedDatabase.Add (new Seed ((int)seedData [i] ["ID"],seedData [i] ["Description"].ToString (),seedData [i] ["Title"].ToString ())); 
+			seedDatabase.Add (new Seed ((int)seedData [i] ["ID"],seedData [i] ["Description"].ToString (),seedData [i] ["Title"].ToString (), seedData [i] ["Slug"].ToString ())); 
 	}
 }
 }
@@ -86,13 +86,14 @@ public class Seed{
 	public int ID{ get; set; }
 	public string Description{ get; set;}
 	public string Title{ get; set;}
+	public string Slug{ get; set;}
 
-
-	public Seed (int id, string description, string title){
+	public Seed (int id, string description, string title, string slug){
 
 		this.ID = id;
 		this.Description = description;
 		this.Title = title; 
+		this.Slug = slug; 
 	}
 	public Seed(){
 

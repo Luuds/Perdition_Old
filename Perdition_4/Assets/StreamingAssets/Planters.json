@@ -5,7 +5,7 @@
 		"Description":"", 
 		"Seed": "",
 		"AcceptItem": true,
-		"SlotItems": [-1,-1,-1,-1,-1] 
+		"SlotItems": [1,-1,-1,-1,-1] 
 
 	}, 
 

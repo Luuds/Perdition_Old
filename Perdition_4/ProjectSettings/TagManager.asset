@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Item
   - Slot
+  - Main Canvas
   layers:
   - Default
   - TransparentFX

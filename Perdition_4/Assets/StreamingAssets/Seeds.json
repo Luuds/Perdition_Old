@@ -2,38 +2,44 @@
 	{
 		"ID":0, 
 		"Description":"", 
-		"Title": "Basic Seed"
+		"Title": "Basic Seed",
+		"Slug": "basic_seed"
 
 	}, 
 
 	{
 		"ID":1, 
 		"Description":"", 
-		"Title": ""
+		"Title": "",
+		"Slug":""
 	}, 
 
 	{
 		"ID":2, 
 		"Description":"", 
-		"Title": ""
+		"Title": "",
+		"Slug":""
 	}, 
 
 	{
 		"ID":3, 
 		"Description":"", 
-		"Title": ""
+		"Title": "",
+		"Slug":""
 	}, 
 
 	{
 		"ID":4, 
 		"Description":"", 
-		"Title": ""
+		"Title": "",
+		"Slug":""
 	}, 
 
 	{
 		"ID":5, 
 		"Description":"", 
-		"Title": ""
+		"Title": "",
+		"Slug":""
 	}
 
 

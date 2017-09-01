@@ -170,7 +170,7 @@ public class Inventory : MonoBehaviour {
 		return full;
 	}
 
-	bool CheckIfItemInInventory(Item item){
+	public bool CheckIfItemInInventory(Item item){
 	
 		for (int i = 0; i < items.Count; i++) 
 			if (items [i].ID == item.ID) 

@@ -9,6 +9,7 @@ public class ItemData : MonoBehaviour, IBeginDragHandler,IDragHandler,IEndDragHa
 	public Item item; //me item
 	public int  amount ; // amount of stack
 	public int slot; //me slot
+	public int storageSlot; 
 	private Inventory inv; 
 	int oldSlot; 
 
@@ -20,7 +21,7 @@ public class ItemData : MonoBehaviour, IBeginDragHandler,IDragHandler,IEndDragHa
 
 	public void OnPointerDown (PointerEventData eventData)
 	{	
-		
+		if (slot > -1){
 		inv.slots [slot].transform.GetComponent<Selectable> ().Select (); 
 	
 		oldSlot = inv.moveSlot; 
@@ -56,9 +57,11 @@ public class ItemData : MonoBehaviour, IBeginDragHandler,IDragHandler,IEndDragHa
 			}
 		}
 		inv.moveSlot = slot;
+		}else if (storageSlot > -1){
+			
+		}
+
 	}
-
-
 
 
 

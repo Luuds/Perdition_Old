@@ -1,4 +1,14 @@
 [
+{
+		"id":-1, 
+		"title":"No Item",
+		"value":0,
+		"description":"",
+		"slug":"",
+		"stackable": false,
+		"stackLimit": 0,
+		"type": ""
+	}, 
 	{
 		"id":0, 
 		"title":"Energy Bar",
