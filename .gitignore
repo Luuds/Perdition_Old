@@ -32,3 +32,6 @@ sysinfo.txt
 # Builds
 *.apk
 *.unitypackage
+Perdition_4/Temp/UnityLockfile
+Perdition_4/Library/EditorInstance.json
+Perdition_4/Temp/
