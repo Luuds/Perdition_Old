@@ -1,0 +1,29 @@
+[
+	{
+		"id":0, 
+		"title":"Energy Bar",
+		"value": 5,
+		"description":"",
+		"slug":"energy_bar",
+		"stackable": true,
+		"stackLimit": 4
+	}, 
+
+	{
+		"id":1, 
+		"title":"Purple Cube",
+		"value": 20,
+		"description":"",
+		"slug":"purple_cube",
+		"stackable": false,
+		"stackLimit":0
+	}
+
+
+
+
+
+
+
+
+]
