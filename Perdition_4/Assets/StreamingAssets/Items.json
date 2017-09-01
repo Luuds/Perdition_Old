@@ -6,7 +6,8 @@
 		"description":"",
 		"slug":"energy_bar",
 		"stackable": true,
-		"stackLimit": 4
+		"stackLimit": 4,
+		"type": "consumable"
 	}, 
 
 	{
@@ -16,7 +17,19 @@
 		"description":"",
 		"slug":"purple_cube",
 		"stackable": false,
-		"stackLimit":0
+		"stackLimit":0,
+		"type": "quest" 
+	}, 
+
+	{
+		"id":2, 
+		"title":"Basic Seed",
+		"value": 20,
+		"description":"",
+		"slug":"basic_seed",
+		"stackable": false,
+		"stackLimit":0,
+		"type": "seed" 
 	}
 
 

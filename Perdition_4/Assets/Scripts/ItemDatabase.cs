@@ -42,7 +42,7 @@ public class ItemDatabase : MonoBehaviour {
 		for (int i = 0; i < itemData.Count; i++) {
 			database.Add (new Item ((int)itemData [i] ["id"], itemData [i] ["title"].ToString (), (int)itemData [i] ["value"],
 				itemData [i] ["description"].ToString (),itemData [i] ["slug"].ToString (),(bool)itemData [i] ["stackable"],
-				(int)itemData [i] ["stackLimit"])); 
+				(int)itemData [i] ["stackLimit"], itemData [i] ["type"].ToString ())); 
 		}
 	}
 }
@@ -57,8 +57,9 @@ public class Item{
 	public Sprite Sprite{ get; set; }
 	public bool Stackable{ get; set; }
 	public int StackLimit{ get; set;}
+	public string Type{ get; set;}
 
-	public Item (int id, string title, int value, string description, string slug, bool stackable, int stackLimit){
+	public Item (int id, string title, int value, string description, string slug, bool stackable, int stackLimit, string type){
 	
 		this.ID = id;
 		this.Title = title; 
@@ -68,7 +69,7 @@ public class Item{
 		this.Sprite = Resources.Load<Sprite> ("Items/" + slug); 
 		this.Stackable = stackable; 
 		this.StackLimit = stackLimit; 
-
+		this.Type = type; 
 	}
 	public Item(){
 	
