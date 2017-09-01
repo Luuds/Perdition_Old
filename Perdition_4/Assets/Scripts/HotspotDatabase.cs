@@ -14,9 +14,14 @@ public class HotspotDatabase : MonoBehaviour {
 
 	public void ConstructHotspotDatabase(){
 		for (int i = 0; i < hotspotData.Count; i++) {
+			List<int> itemsLimit = new List <int> (); 
+			List<int> itemsRecieve = new List <int> ();
+			for (int k = 0; k < hotspotData [i] ["ItemsRecieve"].Count; k++) {
+				itemsRecieve.Add ((int)hotspotData [i] ["ItemsRecieve"] [k]); 
+				itemsLimit.Add ((int)hotspotData [i] ["ItemsLimit"] [k]); 
+			}
 			database.Add (new Hotspot ((int)hotspotData[i]["ID"],hotspotData[i]["Title"].ToString(),hotspotData[i]["Description"].ToString(),hotspotData[i]["Slug"].ToString(),
-				(bool)hotspotData[i]["AcceptItem"],(bool)hotspotData[i]["MenuInterface"], (int)hotspotData[i]["ItemA1"],(int)hotspotData[i]["ItemA2"],(int)hotspotData[i]["ItemA3"],
-				(int)hotspotData[i]["ItemB1"],(int)hotspotData[i]["ItemB2"],(int)hotspotData[i]["ItemB3"]) ); 
+				(bool)hotspotData[i]["AcceptItem"],(bool)hotspotData[i]["MenuInterface"],itemsRecieve,itemsLimit ,hotspotData[i]["ItemType"].ToString() )); 
 		}
 	}
 	public Hotspot FetchHotspotByTitle(string title){
@@ -57,16 +62,15 @@ public class Hotspot{
 	public string Slug{ get; set;}
 	public bool AcceptItem{ get; set; }
 	public bool MenuInterface{ get; set;}
-	public int ItemA1{ get; set;}
-	public int ItemA2{ get; set;}
-	public int ItemA3{ get; set;}
-	public int ItemB1{ get; set;}
-	public int ItemB2{ get; set;}
-	public int ItemB3{ get; set;}
+	public List <int> ItemsRecieve{ get; set;}
+	public List <int> ItemsLimit{ get; set;}
+
+	public string ItemType{ get; set;}
+	
 
 
 	public Hotspot(int id, string title, string description, string slug, bool acceptItem, bool menuInterface, 
-					int itemA1, int itemA2, int itemA3, int itemB1, int itemB2, int itemB3)
+		List <int> itemsRecieve,List <int> itemsLimit, string itemType)
 	{
 		this.ID = id;
 		this.Title = title; 
@@ -74,13 +78,10 @@ public class Hotspot{
 		this.Slug = slug;
 		this.AcceptItem = acceptItem;
 		this.MenuInterface = menuInterface; 
-		this.ItemA1 = itemA1;
-		this.ItemA2 = itemA2;
-		this.ItemA3 = itemA3;
-		this.ItemB1 = itemB1;
-		this.ItemB2 = itemB2;
-		this.ItemB3 = itemB3;
-
+		this.ItemsRecieve = itemsRecieve;
+		this.ItemsLimit = itemsLimit; 
+		this.ItemType = itemType;
+	
 	}
 	public Hotspot(){
 		this.ID = -1; 

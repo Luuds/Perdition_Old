@@ -1,0 +1,63 @@
+[
+	{
+		"Title":"planter_box1", 
+		"ID":0,
+		"Description":"", 
+		"Seed": "",
+		"AcceptItem": true,
+		"SlotItems": [-1,-1,-1,-1,-1] 
+
+	}, 
+
+	{
+		"Title":"planter_box2", 
+		"ID":1,
+		"Description":"", 
+		"Seed": "",
+		"AcceptItem": true,
+		"SlotItems": [-1,-1,-1,-1,-1] 
+	}, 
+
+	{
+		"Title":"planter_box3", 
+		"ID":2,
+		"Description":"", 
+		"Seed": "",
+		"AcceptItem": true,
+		"SlotItems": [-1,-1,-1,-1,-1] 
+	}, 
+
+	{"Title":"planter_box4", 
+		"ID":3, 
+		"Description":"", 
+		"Seed": "",
+		"AcceptItem": true,
+		"SlotItems": [-1,-1,-1,-1,-1] 
+	}, 
+
+	{
+		"Title":"planter_box5", 
+		"ID":4,
+		"Description":"", 
+		"Seed": "",
+		"AcceptItem": true,
+		"SlotItems": [-1,-1,-1,-1,-1] 
+	}, 
+
+	{
+		"Title":"planter_box6", 
+		"ID":5, 
+		"Description":"", 
+		"Seed": "",
+		"AcceptItem": true,
+		"SlotItems": [-1,-1,-1,-1,-1] 
+	}
+
+
+
+
+
+
+
+
+]

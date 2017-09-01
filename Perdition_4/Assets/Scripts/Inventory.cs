@@ -36,7 +36,7 @@ public class Inventory : MonoBehaviour {
 		}
 
 		AddItemByTitle ("Purple Cube");
-		AddItemByTitle ("Purple Cube");
+		AddItemByTitle ("Basic Seed");
 
 		AddItemByTitle ("Energy Bar"); 
 		AddItemByTitle ("Energy Bar"); 
