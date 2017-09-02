@@ -11,12 +11,15 @@ public class ItemData : MonoBehaviour, IBeginDragHandler,IDragHandler,IEndDragHa
 	public int slot; //me slot
 	public int storageSlot; 
 	private Inventory inv; 
+//	private PlanterDatabase planterDatabase; 
+	public string planter; 
 	int oldSlot; 
 
 
 	void Start(){
 		
 		inv = GameObject.FindGameObjectWithTag ("GameController").GetComponent<Inventory> ();
+		//planterDatabase = GameObject.FindGameObjectWithTag ("GameController").GetComponent<PlanterDatabase> ();
 	}
 
 	public void OnPointerDown (PointerEventData eventData)
@@ -58,6 +61,10 @@ public class ItemData : MonoBehaviour, IBeginDragHandler,IDragHandler,IEndDragHa
 		}
 		inv.moveSlot = slot;
 		}else if (storageSlot > -1){
+			if (planter != null){
+				
+				
+			}
 			
 		}
 
@@ -69,7 +76,7 @@ public class ItemData : MonoBehaviour, IBeginDragHandler,IDragHandler,IEndDragHa
 	{
 		if (item != null) {
 			EventSystem.current.SetSelectedGameObject (null); 
-			this.transform.SetParent (this.transform.parent.parent); 
+			this.transform.SetParent (this.transform.parent.parent.parent.parent); 
 			this.transform.position = eventData.position; 
 			GetComponent<CanvasGroup> ().blocksRaycasts = false; 
 		}
@@ -88,11 +95,20 @@ public class ItemData : MonoBehaviour, IBeginDragHandler,IDragHandler,IEndDragHa
 
 	public void OnEndDrag (PointerEventData eventData)
 	{
-		this.transform.SetParent (inv.slots[slot].transform); 
-		this.transform.position = inv.slots[slot].transform.position; 
-		GetComponent<CanvasGroup> ().blocksRaycasts = true; 
-		EventSystem.current.GetComponent<EventSystem> ().SetSelectedGameObject (null);
-	
+		if (slot > -1) {
+			this.transform.SetParent (inv.slots [slot].transform); 
+			this.transform.position = inv.slots [slot].transform.position; 
+			GetComponent<CanvasGroup> ().blocksRaycasts = true; 
+			EventSystem.current.GetComponent<EventSystem> ().SetSelectedGameObject (null);
+		} else if (planter != null) {
+			GameObject myPlanter = GameObject.Find(planter); 
+			this.transform.SetParent (myPlanter.GetComponent<Planter>().slots[storageSlot].transform); 
+			this.transform.position = myPlanter.GetComponent<Planter>().slots[storageSlot].transform.position; 
+			GetComponent<CanvasGroup> ().blocksRaycasts = true; 
+			EventSystem.current.GetComponent<EventSystem> ().SetSelectedGameObject (null);
+		} else {
+		
+		}
 
 
 	}

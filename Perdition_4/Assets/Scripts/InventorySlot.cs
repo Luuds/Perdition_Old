@@ -7,60 +7,75 @@ using UnityEngine.UI;
 public class InventorySlot : MonoBehaviour, IDropHandler, IPointerClickHandler{
 	public int slotID; 
 	private Inventory inv; 
+	private PlanterDatabase planterDatabase; 
 	public int oldSlot = -1;
 
 	void Start(){
 		inv = GameObject.FindGameObjectWithTag("GameController").GetComponent<Inventory> (); 
+		planterDatabase = GameObject.FindGameObjectWithTag("GameController").GetComponent<PlanterDatabase> ();
 	}
 
 	public void OnDrop (PointerEventData eventData)
 	{
 		ItemData droppedItem = eventData.pointerDrag.GetComponent<ItemData> (); 
 		Text text = droppedItem.transform.GetChild (0).GetComponent<Text> (); 
-
+		if(droppedItem.slot >-1 && droppedItem.storageSlot <= -1){
 		if (inv.items [slotID].ID == -1) {
 			inv.items [droppedItem.slot] = new Item (); 
 			inv.items [slotID] = droppedItem.item; 
 			droppedItem.slot = slotID; 
 		} else {
-			if (this.transform.childCount >0){
-				Transform item = this.transform.GetChild (0); 
-				if (inv.items [slotID].ID == droppedItem.item.ID && droppedItem.item.Stackable == true){
+				if (this.transform.childCount > 0) {
+					Transform item = this.transform.GetChild (0); 
+					if (inv.items [slotID].ID == droppedItem.item.ID && droppedItem.item.Stackable == true) {
 					
-					int amountDiff = (item.GetComponent<ItemData> ().item.StackLimit -item.GetComponent<ItemData> ().amount); 
-					if (amountDiff > 0 && droppedItem.amount > 0 && droppedItem.amount > amountDiff && droppedItem.item.StackLimit != droppedItem.amount) {
-						item.GetComponent<ItemData> ().amount += amountDiff;
-						item.GetChild (0).GetComponent<Text> ().text = (item.GetComponent<ItemData> ().amount + 1).ToString (); 
-						droppedItem.amount -= amountDiff; 
-						text.text = (droppedItem.amount + 1).ToString ();
+						int amountDiff = (item.GetComponent<ItemData> ().item.StackLimit - item.GetComponent<ItemData> ().amount); 
+						if (amountDiff > 0 && droppedItem.amount > 0 && droppedItem.amount > amountDiff && droppedItem.item.StackLimit != droppedItem.amount) {
+							item.GetComponent<ItemData> ().amount += amountDiff;
+							item.GetChild (0).GetComponent<Text> ().text = (item.GetComponent<ItemData> ().amount + 1).ToString (); 
+							droppedItem.amount -= amountDiff; 
+							text.text = (droppedItem.amount + 1).ToString ();
 
-					} else if (droppedItem.amount < amountDiff) {
-						item.GetComponent<ItemData> ().amount += droppedItem.amount + 1;
-						item.GetChild (0).GetComponent<Text> ().text = (item.GetComponent<ItemData> ().amount + 1).ToString (); 
-						inv.items [droppedItem.slot] = new Item (); 
-						Destroy (droppedItem.gameObject); 
+						} else if (droppedItem.amount < amountDiff) {
+							item.GetComponent<ItemData> ().amount += droppedItem.amount + 1;
+							item.GetChild (0).GetComponent<Text> ().text = (item.GetComponent<ItemData> ().amount + 1).ToString (); 
+							inv.items [droppedItem.slot] = new Item (); 
+							Destroy (droppedItem.gameObject); 
+
+						} else {
+							item.GetComponent<ItemData> ().slot = droppedItem.slot; 
+							item.transform.SetParent (inv.slots [droppedItem.slot].transform); 
+							item.transform.position = inv.slots [droppedItem.slot].transform.position;
+							inv.items [droppedItem.slot] = item.GetComponent<ItemData> ().item;
+							inv.items [slotID] = droppedItem.item; 
+							droppedItem.slot = slotID; 
+			
+						}
 
 					} else {
 						item.GetComponent<ItemData> ().slot = droppedItem.slot; 
-						item.transform.SetParent (inv.slots[droppedItem.slot].transform); 
+						item.transform.SetParent (inv.slots [droppedItem.slot].transform); 
 						item.transform.position = inv.slots [droppedItem.slot].transform.position;
 						inv.items [droppedItem.slot] = item.GetComponent<ItemData> ().item;
 						inv.items [slotID] = droppedItem.item; 
 						droppedItem.slot = slotID; 
-			
+
 					}
-
-				}else{
-			item.GetComponent<ItemData> ().slot = droppedItem.slot; 
-			item.transform.SetParent (inv.slots[droppedItem.slot].transform); 
-			item.transform.position = inv.slots [droppedItem.slot].transform.position;
-			inv.items [droppedItem.slot] = item.GetComponent<ItemData> ().item;
-			inv.items [slotID] = droppedItem.item; 
-			droppedItem.slot = slotID; 
-
 				}
 		}
 	}
+		else if (droppedItem.slot <= -1 && droppedItem.storageSlot > -1) {
+			if (inv.items [slotID].ID == -1) {
+				inv.items [slotID] = droppedItem.item;
+				droppedItem.slot = slotID;
+				if (droppedItem.planter != null) {
+					SeedPlanter planter = planterDatabase.FetchPlanterByTitle (droppedItem.planter);
+					planter.SlotItems [droppedItem.storageSlot] = -1; 
+					droppedItem.storageSlot = -1; 
+					droppedItem.planter = ""; 
+				}
+			}
+		}
 }
 
 public void OnPointerClick (PointerEventData eventData)
