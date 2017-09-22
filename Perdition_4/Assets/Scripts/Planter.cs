@@ -32,7 +32,6 @@ public class Planter: MonoBehaviour{
 
 
 		slotAmount = 5; 
-		planterPanel = GameObject.Find ("Planter Panel");
 		planterPanel = Resources.Load<GameObject> ("Prefab/Planter Panel");
 		planterSlot = Resources.Load<GameObject> ("Prefab/PlanterSlot") ; 
 		planterItem = Resources.Load<GameObject> ("Prefab/Item") ;
@@ -41,7 +40,7 @@ public class Planter: MonoBehaviour{
 
 			items.Add (new Item ());
 			items [i] = itemDatabase.FetchItemByID( planter.SlotItems [i]); 
-			Debug.Log (items[i].ID); 
+			//Debug.Log (items[i].ID); 
 		}
 
 	}
@@ -87,6 +86,7 @@ public class Planter: MonoBehaviour{
 							seed = planterDatabase.FetchSeedByTitle (droppedItem.item.Title); 
 							planter.Seed = seed.Title; 
 							plantTime = GameController.control.hiddenSeconds; 
+
 							if (droppedItem.amount == 0) {
 								inv.items [droppedItem.slot] = new Item ();
 								Destroy (itemRef); 
@@ -107,16 +107,23 @@ public class Planter: MonoBehaviour{
 					} 
 				}
 
-			} else {
+			} else {//Debug.Log (seed.Title); 
 				if (hit.collider != null) {
 					
 					if (isActive == false) {
 						items.Clear (); 
-
+						slots.Clear (); 
 						GameObject obj = Instantiate(planterPanel,GameObject.FindGameObjectWithTag("Main Canvas").transform);
-						obj.transform.SetAsFirstSibling(); 
+						obj.transform.SetAsFirstSibling();
+						obj.transform.position = Input.mousePosition; 
+						obj.GetComponent<planterPanel> ().planterId = planterID; 
 						GameObject seedObj = Instantiate(Resources.Load<GameObject> ("Prefab/SeedImage"), obj.transform.GetChild(0).transform); 
 						seedObj.GetComponent<Image>().sprite = Resources.Load<Sprite> ("Items/" + seed.Slug);
+						if (seedObj.GetComponent<Image>().sprite==null){
+							seedObj.GetComponent<Image> ().color = new Color (1, 1, 1, 0);
+						}else{
+							seedObj.GetComponent<Image> ().color = new Color (1, 1, 1, 1);
+						}
 						for (int i = 0; i < slotAmount; i++) {
 							 
 							items.Add (new Item ());
@@ -124,7 +131,7 @@ public class Planter: MonoBehaviour{
 							slots.Add (Instantiate (planterSlot));
 							slots [i].GetComponent<PlanterSlot> ().slotID = i; 
 							slots [i].transform.SetParent (obj.transform.GetChild (1).transform);
-							Debug.Log (items [i].ID); 
+						//Debug.Log (items [i].ID); 
 							if (items [i].ID > -1) {
 								AddItemByIDPlanter (items [i].ID);
 							}

@@ -39,6 +39,8 @@ GameObject:
   - component: {fileID: 224010005582742120}
   - component: {fileID: 222349309970341484}
   - component: {fileID: 114530133514142742}
+  - component: {fileID: 114942489027043618}
+  - component: {fileID: 61466397900370986}
   m_Layer: 5
   m_Name: Planter Panel
   m_TagString: Untagged
@@ -97,6 +99,31 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!61 &61466397900370986
+BoxCollider2D:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1542144592533780}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.8039093, y: -0.63209534}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 256.443, y: 62.983734}
+  m_EdgeRadius: 0
 --- !u!114 &114036375112656702
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -232,6 +259,17 @@ MonoBehaviour:
   m_Spacing: {x: 0, y: 0}
   m_Constraint: 2
   m_ConstraintCount: 1
+--- !u!114 &114942489027043618
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1542144592533780}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cd07fe5a5b5351842b0154adcd6a6fed, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!222 &222004151323913088
 CanvasRenderer:
   m_ObjectHideFlags: 1
@@ -280,7 +318,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 349.2, y: -187.9}
+  m_AnchoredPosition: {x: 296.73938, y: -224.24565}
   m_SizeDelta: {x: 256.19, y: 63.04}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224350864785902236
